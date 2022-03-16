@@ -35,7 +35,7 @@ jobs:
                   ${{ secrets.ENV }}
 
             - name: zip distributions
-              run: zip -r blog-vanilla.zip ./server ./appspec.yml ./scripts
+              run: zip -r make-habit.zip ./server ./appspec.yml ./scripts
 
             - name: AWS configure credentials
               uses: aws-actions/configure-aws-credentials@v1
@@ -45,13 +45,13 @@ jobs:
                   aws-region: ap-northeast-2
 
             - name: upload to S3
-              run: aws s3 cp --region ap-northeast-2 ./blog-vanilla.zip s3://rednada1708/public/
+              run: aws s3 cp --region ap-northeast-2 ./make-habit.zip s3://rednada1707/public/
 
             - name: deploy with AWS codeDeploy
               run: aws deploy create-deployment
-                  --application-name blog-vanilla-codedeploy
+                  --application-name makehabit-codedeploy
                   --deployment-config-name CodeDeployDefault.OneAtATime
                   --deployment-group-name GROUP
                   --ignore-application-stop-failures
-                  --s3-location bucket=rednada1708,bundleType=zip,key=public/blog-vanilla.zip
+                  --s3-location bucket=rednada1707,bundleType=zip,key=public/make-habit.zip
                   --description "Ignore ApplicationStop failures due to broken script"

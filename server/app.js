@@ -28,7 +28,7 @@ app.use('/api/proofshot', proofshotRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.get('/', (req, res) => {
-    res.status(200).send('hello world5');
+    res.status(200).send('hello world');
 });
 
 app.listen(port, () => {
